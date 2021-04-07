@@ -1,0 +1,520 @@
+ScreenManager:
+    LoginScreen:
+    CreateAccountScreen:
+    MenuScreen:
+    ProfileScreen:
+    DoctorListViewScreen:
+    DoctorMapViewScreen:
+    LocationMapViewScreen:
+    NewPostScreen:
+    DeletePostScreen:
+    PatientBookingScreen:
+    ListBookingScreen:
+
+
+<LoginScreen>:
+    id: login_screen_ID
+    name: 'kv_login'
+    loginlabel: loginlabel
+    useremail:  useremail
+    userpass: userpass
+    Image:
+        id: imageView
+        source: 'C:/Users/hombr/Desktop/MedcheckUpdate/MedCheck/textures/MediCheckLogo.jpg'
+        allow_stretch: True
+        size_hint_x: 0.4
+        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+    MDLabel:
+        id: loginlabel
+        text: 'Welcome to Medicheck'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+    MDTextField:
+        id: useremail
+        hint_text: 'Email'
+        helper_text: 'please enter your email'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: userpass
+        hint_text: 'Password'
+        helper_text: 'please enter your password'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint_x: None
+        width: 200
+    MagicButton:
+        text: 'LOGIN'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        size_hint: .5, .1
+        on_release:
+            root.verifyUser()
+            self.wobble()
+
+    MagicButton:
+        text: 'Create Account?'
+        font_size: '12sp'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+        size_hint: .5, .1
+        on_release: 
+            root.manager.current = 'kv_createaccount'
+            root.manager.transition.direction = "up"
+            self.twist()
+
+
+
+<CreateAccountScreen>:
+    id: create_account_ID
+    name: 'kv_createaccount'
+    createaccountlabel: createaccountlabel
+    toggletype: toggletype
+    newemail:  newemail
+    newpass: newpass
+    newfirst: newfirst
+    newmiddle: newmiddle
+    newlast: newlast
+    contact: contact
+    type: type
+    profession: profession
+    MDLabel:
+        id: createaccountlabel
+        text: 'CREATE YOUR ACCOUNT'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+    MDTextField:
+        id: newemail
+        hint_text: 'Email'
+        helper_text: 'please enter your email'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.80}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: newpass
+        hint_text: 'Password'
+        helper_text: 'please enter your password'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.73}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: newfirst
+        hint_text: 'First Name'
+        helper_text: 'please enter your first name'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: newmiddle
+        hint_text: 'Middle Initial'
+        helper_text: 'please enter your middle initial'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: newlast
+        hint_text: 'Surname'
+        helper_text: 'please enter your last name'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: contact
+        hint_text: 'Contact Number'
+        helper_text: 'please enter your contact number'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+        size_hint_x: None
+        width: 200
+    MDLabel:
+        text: 'SELECT ACCOUNT TYPE'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+    MagicButton1:
+        id: toggletype
+        text: 'DOCTOR ACCOUNT'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+        on_release: 
+            root.toggleType()
+            self.grow()
+    MDTextField:
+        id: profession
+        hint_text: 'Specialization'
+        helper_text: 'please enter your work field'
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+        size_hint_x: None
+        width: 200
+    # BoxLayout:
+    #     FileChooserListView:
+    #         id: filechooser
+    #         title: 'select image'
+    #         halign: 'center'
+    #         pos_hint: {'center_x': 0.5, 'center_y': 0.3} 
+    BoxLayout:
+        padding: [100, 0, 0, 0]
+        orientation: 'horizontal'
+        MDRectangleFlatButton:
+            pos_hint: {'center_y': 0.1}
+            text: 'Back'
+            on_release: 
+                root.clear()
+                root.manager.current = 'kv_login'
+                root.manager.transition.direction = "down" 
+        MDRectangleFlatButton:
+            text: 'CREATE'
+            pos_hint: {'center_y': 0.1}
+            on_release: 
+                root.createAccountDB()
+                root.manager.current = 'kv_login'
+                root.manager.transition.direction = "down"  
+           
+
+
+<MenuScreen>:
+    name: 'kv_menu'
+    list_on_menu: list_on_menu
+    navname: navname
+    doctorbutton: doctorbutton
+    Screen:
+        NavigationLayout:
+            ScreenManager:
+                Screen:
+                    BoxLayout:
+                        orientation: 'vertical'
+                        MDToolbar:
+                            title: 'MedCheck Application'
+                            left_action_items: [["menu", lambda x: menu_nav_drawer_ID.toggle_nav_drawer()]]
+                            elevation: 10
+                        BoxLayout:
+                            ScrollView:
+                                MDList:
+                                    id: list_on_menu
+            MDNavigationDrawer:
+                id: menu_nav_drawer_ID
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: '4dp'
+                    padding: '4dp'
+                    Image:
+                        source: 'profiles/default.png'
+                    MDLabel:
+                        id: navname
+                        text: ""
+                        halign: 'center'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    ScrollView:
+                        MDList:
+                            OneLineIconListItem:
+                                IconLeftWidget:
+                                    icon: 'face-profile-woman'
+                                MDFlatButton:
+                                    text: "My Profile"
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                            OneLineIconListItem:
+                                MDFlatButton:
+                                    text: "My Booking"
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                                    on_release:
+                                        root.initializeBookingPage()
+                                        root.manager.current = "kv_listbooking"
+                                        root.manager.transition.direction = "left"
+                            OneLineIconListItem:
+                                IconLeftWidget:
+                                    icon: "doctor"
+                                MDFlatButton:
+                                    id: doctorbutton
+                                    text: "Find Doctors"
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                                    on_release: 
+                                        root.setInitialLocation()
+                                        root.manager.current = 'kv_locationmapview'
+                                        root.manager.transition.direction = "left"
+                            OneLineIconListItem:
+                                MDFlatButton:
+                                    text: "New Post"
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                                    on_release:
+                                        root.manager.current = 'kv_newpostscreen'
+                                        root.manager.transition.direction = "left"
+                            OneLineIconListItem:
+                                MDFlatButton:
+                                    text: "Delete Post"
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                                    on_release:
+                                        root.manager.current = 'kv_deletepostscreen'
+                                        root.manager.transition.direction = "left"
+                            OneLineIconListItem:
+                                IconLeftWidget:
+                                    icon: 'file-upload'
+                                MDFlatButton:
+                                    text: "Logout"
+                                    background_color: 0.3, 0.4, 0.5, 1 
+                                    halign: 'center'
+                                    pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+                                    on_release: 
+                                        root.clearposts()
+                                        root.manager.current = 'kv_login'
+                                        root.manager.transition.direction = "right"
+
+
+<NewPostScreen>:
+    name: "kv_newpostscreen"
+    postbox: postbox
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            text: 'Type you new post here! Everyone will see it!'
+            halign: 'center'
+        MDTextField:
+            id: postbox
+            hint_text: 'Post Box'
+            helper_text: 'Share anything, be yourself. Be free'
+            helper_text_mode: 'on_focus'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            size_hint_x: None
+            width: 200
+        BoxLayout:
+            padding: [100, 0, 0, 0]
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'Back'
+                pos_hint: {'center_y': 0.5}
+                width: 0.2
+                on_release: 
+                    root.clear()
+                    root.manager.current = "kv_menu"
+                    root.manager.transition.direction = "right"
+            MDRectangleFlatButton:
+                text: 'Next'
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    root.appendPost()
+                    root.clear()
+                    root.manager.current = "kv_menu"
+                    root.manager.transition.direction = "right"
+
+
+<DeletePostScreen>:
+    name: "kv_deletepostscreen"
+    delete_list: delete_list
+    buttondelete: buttondelete
+    delete_box: delete_box
+    delete_label: delete_label
+    BoxLayout:
+        orientation: 'vertical'
+        id: delete_box
+        BoxLayout:
+            ScrollView:
+                MDList:
+                    id: delete_list
+        MDLabel:
+            id: delete_label
+            text: 'Any deletions of posts cannot be undone'
+            halign: 'center'
+        BoxLayout: 
+            padding: [120, 0, 0, 0]
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                id: buttondelete
+                text: 'LOAD MY POSTS'
+                pos_hint: {'center_y': 0.8}
+                on_release: 
+                    root.buttonPress()
+                    root.manager.transition.direction = "right"
+
+
+<LocationMapViewScreen>:
+    name: "kv_locationmapview"
+    locationmapview: locationmapview
+    locationsetlabel: locationsetlabel
+    BoxLayout:
+        orientation: 'vertical'
+        MapView:
+            id: locationmapview
+            lat: 11.28
+            lon: 121.85
+            zoom: 5
+            double_tap_zoom: True
+        MDLabel:
+            id: locationsetlabel
+            size_hint_y: None
+            text: 'Your Location'
+            halign: 'center'
+            height: 30
+        BoxLayout:
+            padding: [100, 0, 0, 0]
+            size_hint_y: None
+            height: 50
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'Set Marker'
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    root.setMarker()
+            MDRectangleFlatButton:
+                text: 'Next'
+                pos_hint: {'center_y': 0.5}
+                on_release:
+                    root.updateLocation()
+
+
+<DoctorMapViewScreen>:
+    name: "kv_doctormapview"
+    automaticmapview: automaticmapview
+    BoxLayout:
+        orientation: 'vertical'
+        MapView:
+            id: automaticmapview
+            lat: 11.28
+            lon: 121.85
+            zoom: 5
+            double_tap_zoom: True
+        BoxLayout:
+            padding: [100, 0, 0, 0]
+            size_hint_y: None
+            height: 50
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'List View'
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    root.manager.current = 'kv_doctorlistview'
+                    root.manager.transition.direction = "down"
+
+
+<DoctorListViewScreen>:
+    name: "kv_doctorlistview"
+    doctor_list: doctor_list
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            MDList:
+                id: doctor_list
+                MDLabel:
+                    text: 'Search your nearest doctor'
+                    halign: 'center'
+        BoxLayout:
+            padding: [100, 0, 0, 0]
+            size_hint_y: None
+            height: 50
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'Back.'
+                pos_hint: {'center_y': 0.5}
+                width: 0.2
+                on_release: 
+                    root.resetWidgets()
+                    root.manager.current = "kv_menu"
+                    root.manager.transition.direction = "right"
+            MDRectangleFlatButton:
+                text: 'Map View'
+                pos_hint: {'center_y': 0.5}
+                on_release: 
+                    root.manager.current = 'kv_doctormapview'
+                    root.manager.transition.direction = "up"
+
+
+<ProfileScreen>:
+    name: "kv_profile"
+    MDLabel:
+        text: 'Welcome to profile'
+        halign: 'center'
+    MDRectangleFlatButton:
+        text: 'Return to Menu'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+        on_release: 
+            root.manager.current = 'kv_menu'
+            root.manager.transition.direction = "right"
+
+
+<PatientBookingScreen>:
+    name: 'kv_bookpatient'
+    address1: address1
+    bookreason: bookreason
+    appodate: appodate
+    doctorlabel: doctorlabel
+    MDLabel:
+        id: doctorlabel
+        text: ''
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+    MDTextField:
+        id: address1
+        hint_text: 'Address'
+        helper_text: 'Full Address: '
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        size_hint_x: None
+        width: 200
+    MDTextField:
+        id: bookreason
+        hint_text: 'Reason of Appointment'
+        helper_text: 'State the Reason: '
+        helper_text_mode: 'on_focus'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint_x: None
+        width: 200
+    MDRectangleFlatButton:
+        id: appodate
+        text: 'Set Date'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        on_release:
+            root.show_datepicker()
+    MDRectangleFlatButton:
+        id: submit
+        text: 'Submit Request'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+        on_release:
+            root.submitForm()
+    MDRectangleFlatButton:
+        text: 'Back'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+        on_release:
+            root.backbutton()
+            root.manager.current = 'kv_doctorlistview'
+
+
+<ListBookingScreen>:
+    name: "kv_listbooking"
+    bookinglist: bookinglist
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            MDList:
+                id: bookinglist
+                MDLabel:
+                    text: 'Booking List'
+                    halign: 'center'
+        BoxLayout:
+            padding: [130, 0, 0, 0]
+            size_hint_y: None
+            height: 50
+            orientation: 'horizontal'
+            MDRectangleFlatButton:
+                text: 'Back'
+                pos_hint: {'center_y': 0.5}
+                width: 0.2
+                on_release: 
+                    root.clear()
+                    root.manager.current = "kv_menu"
+                    root.manager.transition.direction = "right"
